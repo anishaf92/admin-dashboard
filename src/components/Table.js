@@ -50,6 +50,7 @@ const Table = ({ searchText, onSelectedRowsChange, rowsToDelete, refresh }) => {
       const sortedResult = result.sort((a, b) => a.id - b.id);
       setUserData(sortedResult);
       setTotalRows(sortedResult.length)
+      setTotalPages(Math.ceil(sortedResult.length / itemsPerPage));
       
     } else {
       const sortedOriginalUserData = originalUserData.sort((a, b) => a.id - b.id);
@@ -70,7 +71,7 @@ const Table = ({ searchText, onSelectedRowsChange, rowsToDelete, refresh }) => {
       setSelectedRows([]);
       onSelectedRowsChange([]); // Notify the parent component about the selected rows
       setTotalRows(updatedUserData.length)
-      
+      setTotalPages(Math.ceil(updatedUserData.length / itemsPerPage));
     }
     // eslint-disable-next-line
   }, [refresh]);
